@@ -1,0 +1,43 @@
+Representación,Generación,Fitness
+Binaria,0,-0.6597
+Binaria,20,-0.0363
+Binaria,40,-0.0363
+Binaria,60,-0.0363
+Binaria,80,-0.0363
+Permutacional,0,0.1419
+Permutacional,10,0.2637
+Permutacional,20,0.2637
+Permutacional,30,0.2637
+Permutacional,40,0.2637
+Real,0,-1.0911
+Real,30,-1.0911
+Real,60,-1.0911
+Real,90,-1.0911
+Real,120,-1.0911
+
+Representación,Examen,Alumnos,Promedio,Varianza,RangoNotas
+Binaria,A,13,15.38,, 
+Binaria,B,13,15.46,, 
+Binaria,C,13,15.38,, 
+Permutacional,A,13,15.46,,11
+Permutacional,B,13,15.38,,10
+Permutacional,C,13,15.38,,11
+Real,A,13,15.38,8.39,"11-20"
+Real,B,13,15.46,15.48,"9-20"
+Real,C,13,15.38,7.78,"10-20"
+
+Representación,Métrica,Valor
+Binaria,Desviación estándar entre promedios,0.0363
+Permutacional,Desviación estándar entre promedios,0.0363
+Permutacional,Mejora total,85.8%
+Real,Desviación estándar entre promedios,0.0363
+Real,Diferencia máxima entre promedios,0.08
+
+Representación,Examen,AlumnosMuestra
+Binaria,A,"Alumno2, Alumno5, Alumno6, Alumno7, Alumno12"
+Binaria,B,"Alumno1, Alumno4, Alumno10, Alumno11, Alumno15"
+Binaria,C,"Alumno3, Alumno8, Alumno9, Alumno13, Alumno14"
+Permutacional,A,"Alumno23 (16.0), Alumno22 (20.0), Alumno8 (13.0), Alumno28 (13.0), Alumno3 (14.0)"
+Permutacional,B,"Alumno32 (18.0), Alumno1 (15.0), Alumno39 (14.0), Alumno21 (13.0), Alumno10 (17.0)"
+Permutacional,C,"Alumno12 (19.0), Alumno20 (19.0), Alumno34 (9.0), Alumno24 (11.0), Alumno7 (14.0)"
+

@@ -1,3 +1,6 @@
+#Modifica representacion_permutacional.py para agregar una restricción:
+    #Los alumnos con notas < 11 no pueden estar todos en el mismo examen
+    #Ajusta la función de fitness para penalizar soluciones que violen esta restricción
 import random
 import numpy as np
 import pandas as pd
@@ -5,6 +8,8 @@ import pandas as pd
 df = pd.read_csv('notas_1u.csv')
 alumnos = df['Alumno'].tolist()
 notas = df['Nota'].tolist()
+alumnos_bajo_11 = [i for i, nota in enumerate(notas) if nota < 11]
+
 
 def crear_cromosoma():
     indices = list(range(39))
@@ -20,6 +25,35 @@ def decodificar_cromosoma(cromosoma):
     return asignaciones
 
 def calcular_fitness(cromosoma):
+    asignaciones = decodificar_cromosoma(cromosoma)
+    
+    promedios = {}
+    penalizacion = 0
+
+    # Verificar la restricción de alumnos con nota < 11
+    for examen in ['A', 'B', 'C']:
+        indices = asignaciones[examen]
+        count_bajo_11 = sum(1 for i in indices if i in alumnos_bajo_11)
+        if count_bajo_11 == len(alumnos_bajo_11):  # todos están en un solo examen
+            penalizacion += 1  # aplicar penalización
+
+    for examen in ['A', 'B', 'C']:
+        indices = asignaciones[examen]
+        notas_examen = [notas[i] for i in indices]
+        promedios[examen] = np.mean(notas_examen)
+    
+    desv_promedios = np.std(list(promedios.values()))
+    
+    bonus_diversidad = 0
+    for examen in ['A', 'B', 'C']:
+        indices = asignaciones[examen]
+        notas_examen = [notas[i] for i in indices]
+        if max(notas_examen) - min(notas_examen) > 5:
+            bonus_diversidad += 0.1
+
+    fitness = -desv_promedios + bonus_diversidad - (penalizacion * 1.0)
+    return fitness
+
     asignaciones = decodificar_cromosoma(cromosoma)
     
     promedios = {}
@@ -118,7 +152,7 @@ def algoritmo_genetico(generaciones=50, tam_poblacion=30):
     mejor_cromosoma = fitness_scores[0][0]
     return mejor_cromosoma, historial_fitness
 
-print("REPRESENTACIÓN PERMUTACIONAL")
+print("REPRESENTACIÓN PERMUTACIONAL - MODIFICADA")
 print("Problema: Secuenciar alumnos para asignación ordenada a exámenes")
 print("Cromosoma: Permutación de 39 índices de alumnos")
 print("Decodificación: Posiciones [0-12] → Examen A, [13-25] → Examen B, [26-38] → Examen C\n")
@@ -156,5 +190,4 @@ print("\nEvolución del algoritmo:")
 print(f"Fitness inicial: {historial[0]:.4f}")
 print(f"Fitness final: {historial[-1]:.4f}")
 print(f"Mejora total: {((historial[-1] - historial[0]) / abs(historial[0]) * 100):.1f}%")
-
 

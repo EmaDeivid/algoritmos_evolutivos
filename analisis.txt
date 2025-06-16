@@ -1,0 +1,12 @@
+1. ¿Cuál representación logra mejor equilibrio entre los grupos?
+Las tres representaciones (binaria, permutacional y real) lograron dividir a los 39 alumnos en 
+tres grupos iguales, con 13 alumnos cada uno, y con promedios de notas muy similares. 
+La diferencia entre los promedios fue mínima en todos los casos, con una desviación estándar 
+de solo 0.0363, lo que indica que todas lograron un buen equilibrio. Ninguna fue claramente 
+mejor que otra en este aspecto.
+
+2. ¿Cuál converge más rápido? (observa las generaciones)
+La representación binaria fue la que convergió más rápido, alcanzando su mejor resultado 
+en la generación 20. La permutacional mejoró recién en la generación 40, y la representación 
+real no mejoró en ninguna generación. Por eso, en cuanto a velocidad de mejora, la binaria 
+es la más eficiente.
